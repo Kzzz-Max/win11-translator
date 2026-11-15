@@ -8,6 +8,10 @@ release/
 .probe/
 *.log
 
+# 只发布打包脚本；其余是写死本机路径的调试/自测脚本，不适合入库
+tools/*
+!tools/pack.js
+
 # tesseract 被误写到项目根目录时才会出现的缓存副本
 # （注意：assets/tessdata/eng.traineddata 是要入库的离线识别数据）
 /eng.traineddata

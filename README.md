@@ -1,8 +1,7 @@
 ﻿# Win11 翻译 · 常驻后台的截图 / 划词翻译工具
 
 一个安静的 Windows 桌面小工具：常驻托盘，两个快捷键，把屏幕上看不懂的英文翻成中文。
-外观按 Windows 11 Fluent Design 做（淡亚克力 + 克制阴影 + 8px/4px 圆角），
-玻璃容器用 `liquid-glass-component` 的基础容器能力，但把折射参数压到很低。
+外观按 Windows 11 Fluent Design
 
 ---
 
@@ -11,7 +10,7 @@
 **方式 A：下免安装版（推荐，双击即用）**
 
 到仓库的 **Releases** 下载 `Win11Translator-portable.zip`，解压到任意目录，双击 `Win11Translator.exe`。
-里面是 Electron 运行时 + 应用代码（解压后约 324 MB），不需要 Node、不需要安装、不写注册表。
+里面是 Electron 运行时 + 应用代码，不需要 Node、不需要安装、不写注册表。
 第一次启动会打开设置页；之后只在托盘里待着。
 
 **方式 B：自己构建**

@@ -317,3 +317,14 @@
 body.surface-solid .shell {
   background: var(--bg-window);
 }
+
+/* 译文与原文相同时的说明（产品名/专有名词被原样保留） */
+.same-hint {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-3);
+  white-space: normal;
+  border-left: 2px solid var(--stroke-strong);
+  padding-left: 8px;
+}

@@ -211,6 +211,11 @@ function App() {
   const streaming = phase === 'loading' || phase === 'streaming';
   const chars = sourceText.trim().length;
 
+  // 机翻遇到产品名/专有名词时常原样返回，此时提示一句，避免看起来像没翻译成功
+  const collapse = (s) => String(s || '').replace(/\s+/g, '');
+  const sameAsSource =
+    phase === 'done' && translated.trim().length > 0 && collapse(translated) === collapse(sourceText);
+
   return (
     <div className="shell">
       <div className="app-bg" />
@@ -306,6 +311,9 @@ function App() {
                 <div className="tr-text">
                   {translated}
                   {streaming ? <span className="caret" /> : null}
+                  {sameAsSource ? (
+                    <div className="same-hint">该内容为专有名词</div>
+                  ) : null}
                 </div>
               ) : phase === 'idle' ? (
                 <div className="empty">

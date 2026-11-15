@@ -1,6 +1,6 @@
 {
   "name": "win11-translator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Win11-style background resident translation tool: region OCR translate + selection translate",
   "main": "src/main/main.js",
   "author": "",

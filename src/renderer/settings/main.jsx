@@ -467,7 +467,7 @@ function App() {
       <footer className="footer">
         <span>{savedAt ? '✓ 已自动保存' : '修改即时生效并自动保存'}</span>
         <span className="grow" />
-        <span>v{cfg.version || '1.0.0'}</span>
+        <span>v{cfg.version || '1.1.0'}</span>
       </footer>
     </div>
   );

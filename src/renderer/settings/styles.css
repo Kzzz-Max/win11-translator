@@ -1,0 +1,280 @@
+@import '../shared/theme.css';
+
+/* ---------- 设置窗 ---------- */
+.shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--r-window);
+  border: 1px solid var(--stroke);
+  overflow: hidden;
+}
+
+.titlebar {
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px 0 16px;
+  gap: 8px;
+  border-bottom: 1px solid var(--stroke);
+}
+.titlebar .title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.titlebar .spacer {
+  flex: 1;
+}
+
+.content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 14px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 2px 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.card {
+  padding: 4px 0;
+  flex: 0 0 auto;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 14px;
+}
+.row + .row {
+  border-top: 1px solid var(--stroke);
+}
+.row .label {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.row .label .name {
+  font-size: 13.5px;
+  color: var(--text-1);
+}
+.row .label .hint {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+.row .control {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.row.stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='number'] {
+  height: 30px;
+  min-width: 180px;
+  padding: 0 10px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-1);
+  background: var(--bg-input);
+  border: 1px solid var(--stroke);
+  border-radius: 4px;
+  outline: none;
+  user-select: text;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='number']:focus {
+  border-color: var(--accent);
+  background: var(--bg-hover);
+}
+input::placeholder {
+  color: var(--text-3);
+}
+
+select {
+  height: 30px;
+  min-width: 168px;
+  padding: 0 28px 0 10px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-1);
+  background: var(--bg-input);
+  border: 1px solid var(--stroke);
+  border-radius: 4px;
+  outline: none;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 15px) 13px, calc(100% - 10px) 13px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+select:focus {
+  border-color: var(--accent);
+}
+
+.hotkey-input {
+  width: 148px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+.hotkey-input.is-capturing {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--bg-active);
+}
+
+.pill {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--bg-hover);
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.pill.warn {
+  background: rgba(255, 196, 87, 0.14);
+  color: #ffc457;
+}
+.pill.ok {
+  background: rgba(96, 205, 255, 0.14);
+  color: var(--accent);
+}
+.pill.bad {
+  background: rgba(255, 99, 108, 0.14);
+  color: var(--danger);
+}
+
+/* 开关 */
+.switch {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--bg-input);
+  border: 1px solid var(--stroke-strong);
+  transition: background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+  flex: 0 0 auto;
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-2);
+  transition: transform var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+}
+.switch.on {
+  background: var(--accent);
+  border-color: transparent;
+}
+.switch.on::after {
+  transform: translateX(20px);
+  background: var(--accent-ink);
+}
+
+.note {
+  padding: 9px 12px;
+  margin: 6px 14px 10px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  line-height: 1.62;
+  color: var(--text-3);
+  background: var(--bg-card);
+  border: 1px solid var(--stroke);
+}
+.note b {
+  color: var(--text-2);
+  font-weight: 600;
+}
+.note code {
+  font-family: 'Cascadia Mono', Consolas, monospace;
+  font-size: 11px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: var(--bg-hover);
+  color: var(--text-2);
+}
+
+.footer {
+  height: 34px;
+  flex: 0 0 34px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border-top: 1px solid var(--stroke);
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+.footer .grow {
+  flex: 1;
+}
+
+.test-out {
+  margin: 0 14px 10px;
+  padding: 9px 11px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-2);
+  background: var(--bg-card);
+  border: 1px solid var(--stroke);
+  user-select: text;
+  word-break: break-word;
+}
+.test-out.bad {
+  color: var(--danger);
+  border-color: rgba(255, 99, 108, 0.28);
+}
+
+.row.stack .control {
+  width: 100%;
+}
+.row.stack .control input {
+  width: 100%;
+  min-width: 0;
+}
+
+.shell {
+  background: var(--bg-acrylic);
+}
+body.surface-solid .shell {
+  background: var(--bg-window);
+}

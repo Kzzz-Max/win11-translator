@@ -1,0 +1,87 @@
+@import '../shared/theme.css';
+
+/* ---------- 全屏框选遮罩 ---------- */
+html,
+body {
+  background: transparent !important;
+  cursor: crosshair;
+  overflow: hidden;
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  cursor: crosshair;
+}
+
+/* 未框选时的整屏蒙层 */
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  animation: fade var(--dur-base) var(--ease);
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* 选区：内部透明、外部靠超大 box-shadow 遮住 */
+.sel {
+  position: fixed;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.42);
+  background: rgba(96, 205, 255, 0.06);
+  pointer-events: none;
+}
+
+.corner {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--accent);
+  pointer-events: none;
+}
+
+.size {
+  position: fixed;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hint {
+  position: fixed;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(28, 28, 28, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px) saturate(1.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+.hint kbd {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}

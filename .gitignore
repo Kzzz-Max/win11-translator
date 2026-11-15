@@ -1,0 +1,22 @@
+# 构建产物
+node_modules/
+dist/
+release/
+
+# 开发过程产物
+.shots/
+.probe/
+*.log
+
+# tesseract 被误写到项目根目录时才会出现的缓存副本
+# （注意：assets/tessdata/eng.traineddata 是要入库的离线识别数据）
+/eng.traineddata
+
+# 系统临时
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 编辑器
+.vscode/
+.idea/

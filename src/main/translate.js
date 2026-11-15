@@ -451,4 +451,4 @@ async function translateStream({ text, from, to, onDelta, onMeta, signal }) {
   throw err;
 }
 
-module.exports = { translateStream, LANGS, LABEL };
+module.exports = { translateStream, LANGS };

@@ -310,36 +310,15 @@ function openSettings(payload) {
   return win;
 }
 
-function closeAll() {
-  for (const key of Object.keys(wins)) {
-    const v = wins[key];
-    if (Array.isArray(v)) v.forEach((w) => w && !w.isDestroyed() && w.close());
-    else if (v && !v.isDestroyed()) v.close();
-  }
-}
-
-function broadcast(channel, data) {
-  for (const key of Object.keys(wins)) {
-    const v = wins[key];
-    const list = Array.isArray(v) ? v : [v];
-    for (const w of list) if (w && !w.isDestroyed()) w.webContents.send(channel, data);
-  }
-}
-
 module.exports = {
   wins,
   SURFACE,
   HAS_ACRYLIC,
-  ensurePopup,
   showPopupAtCursor,
   hidePopup,
   createOverlays,
   closeOverlays,
-  ensureResult,
   showResult,
   setResultAlwaysOnTop,
   openSettings,
-  closeAll,
-  broadcast,
-  positionResultNearCursor,
 };

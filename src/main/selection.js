@@ -86,4 +86,4 @@ function normalize(text) {
     .trim();
 }
 
-module.exports = { captureSelection, restoreClipboard, normalize };
+module.exports = { captureSelection, restoreClipboard };

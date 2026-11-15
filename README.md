@@ -1,7 +1,7 @@
 ﻿# Win11 翻译 · 常驻后台的截图 / 划词翻译工具
 
 一个安静的 Windows 桌面小工具：常驻托盘，两个快捷键，把屏幕上看不懂的英文翻成中文。
-外观按 Windows 11 Fluent Design
+外观按 Windows 11 Fluent Design 的风格设计。
 
 ---
 

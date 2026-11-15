@@ -1,0 +1,65 @@
+name: Build portable release
+
+# 网页上传 Release 附件有 25MB 的隐性上限（文档写 2GB），所以改为由 CI 构建并上传。
+# 打一个 v* 的 tag 就会自动出包；也可以在 Actions 页面手动 Run workflow 只构建不发布。
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build renderer and portable app
+        run: |
+          node build.mjs
+          node tools/pack.js
+
+      - name: Package portable zip
+        shell: pwsh
+        run: |
+          $src = "release/Win11Translator"
+          $out = "release/Win11Translator-portable.zip"
+          if (-not (Test-Path $src)) { throw "打包目录不存在，pack.js 可能失败了" }
+          & "C:\Program Files\7-Zip\7z.exe" a -tzip -mx=5 $out $src
+          if (-not (Test-Path $out)) { throw "zip 未生成" }
+          "{0:N1} MB" -f ((Get-Item $out).Length / 1MB)
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Win11Translator-portable
+          path: release/Win11Translator-portable.zip
+          retention-days: 7
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/Win11Translator-portable.zip
+          name: ${{ github.ref_name }}
+          draft: false
+          generate_release_notes: true
+          body: |
+            解压后双击 `Win11Translator.exe` 即可使用，不需要安装 Node 或任何运行时。
+
+            - 截图翻译：`Ctrl+Alt+S`
+            - 划词翻译：`Ctrl+Alt+W`
+
+            首次运行如果被 SmartScreen 拦住，点「更多信息 → 仍要运行」（程序没有代码签名）。
